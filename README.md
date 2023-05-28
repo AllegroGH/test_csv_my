@@ -1,3 +1,6 @@
+# Badges
+[![Maintainability](https://api.codeclimate.com/v1/badges/b3acf96798b65a976af7/maintainability)](https://codeclimate.com/github/AllegroGH/test_csv_my/maintainability)
+
 ### Titanic
 
 Вам дана таблица пассажиров Титаника в файле test.csv.
