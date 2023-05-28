@@ -1,4 +1,5 @@
 ### Badges
+[![build](https://github.com/AllegroGH/test_csv_my/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/AllegroGH/test_csv_my/actions/workflows/build.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/b3acf96798b65a976af7/maintainability)](https://codeclimate.com/github/AllegroGH/test_csv_my/maintainability)
 
 ### Titanic
