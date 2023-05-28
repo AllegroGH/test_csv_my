@@ -13,18 +13,19 @@ const sexIndex = 4;
 // const cabinIndex = 10;
 const embarkedIndex = 11;
 
-const parse = (content) => {
-  const result = content
-    .trim()
-    .split('\r\n')
-    .slice(1)
-    .map((el) => el.split(',"'))
-    .map((el) => [el[0], ...el[1].split('",')])
-    .map(([prev, name, next], index) => [...prev.split(','), name, ...next.split(',')]);
-  return result;
-};
+// prettier-ignore
+const parse = (content) => content
+  .trim()
+  .split('\r\n')
+  .slice(1)
+  .map((el) => el.split(',"'))
+  .map((el) => [el[0], ...el[1].split('",')])
+  .map(([prev, name, next]) => [...prev.split(','), name, ...next.split(',')]);
 
-const getEmbarkedList = (data) => _.union(data.filter((el) => el[embarkedIndex]).map((el) => el[embarkedIndex])).sort();
+// prettier-ignore
+const getEmbarkedList = (data) => _.union(data
+  .filter((el) => el[embarkedIndex])
+  .map((el) => el[embarkedIndex])).sort();
 
 const getGendersRatio = (data) => {
   const maleCount = data.filter((el) => el[sexIndex] === 'male').length;
@@ -37,11 +38,11 @@ const getSurvivedPercent = (data) => {
   return `${Math.round((survived.length / data.length) * 100)}%`;
 };
 
-const getANames = (data) =>
-  data
-    .filter((el) => el[nameIndex][0] === 'A')
-    .map((el) => el[nameIndex])
-    .join('\n      ');
+// prettier-ignore
+const getANames = (data) => data
+  .filter((el) => el[nameIndex][0] === 'A')
+  .map((el) => el[nameIndex])
+  .join('\n      ');
 
 export default function solution(content) {
   const data = parse(content);
