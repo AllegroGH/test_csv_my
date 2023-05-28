@@ -1,5 +1,18 @@
 import _ from 'lodash';
 
+// const idIndex = 0;
+const survivedIndex = 1;
+// const pclassIndex = 2;
+const nameIndex = 3;
+const sexIndex = 4;
+// const ageIndex = 5;
+// const sibspIndex = 6;
+// const parchIndex = 7;
+// const ticketIndex = 8;
+// const fareIndex = 9;
+// const cabinIndex = 10;
+const embarkedIndex = 11;
+
 const parse = (content) => {
   const result = content
     .trim()
@@ -11,24 +24,24 @@ const parse = (content) => {
   return result;
 };
 
-const getEmbarkedList = (data) => _.union(data.map((el) => el[11]));
+const getEmbarkedList = (data) => _.union(data.filter((el) => el[embarkedIndex]).map((el) => el[embarkedIndex])).sort();
 
 const getGendersRatio = (data) => {
-  const maleCount = data.filter((el) => el[4] === 'male').length;
-  const femaleCount = data.filter((el) => el[4] === 'female').length;
+  const maleCount = data.filter((el) => el[sexIndex] === 'male').length;
+  const femaleCount = data.filter((el) => el[sexIndex] === 'female').length;
   return [maleCount, femaleCount];
 };
 
 const getSurvivedPercent = (data) => {
-  const survived = data.filter((el) => Number(el[1]));
+  const survived = data.filter((el) => Number(el[survivedIndex]));
   return `${Math.round((survived.length / data.length) * 100)}%`;
 };
 
 const getANames = (data) =>
   data
-    .filter((el) => el[3][0] === 'A')
-    .map((el) => el[3])
-    .join('\n');
+    .filter((el) => el[nameIndex][0] === 'A')
+    .map((el) => el[nameIndex])
+    .join('\n      ');
 
 export default function solution(content) {
   const data = parse(content);
@@ -44,5 +57,6 @@ export default function solution(content) {
   console.log(`Survived: ${survivedPercent}`);
 
   const ANames = getANames(data);
-  console.log(`Passenger names beginning with "A": ${ANames}`);
+  console.log(`Passenger names beginning with "A": 
+      ${ANames}`);
 }
